@@ -1167,7 +1167,11 @@ BUILD_ID_CMD	:= sh -c 'printf 0x%s $$(cat "$$@" | sha1sum - | cut -c-8)' --
 
 # Build timestamp
 #
+ifdef SOURCE_DATE_EPOCH
+BUILD_TIMESTAMP := $(SOURCE_DATE_EPOCH)
+else
 BUILD_TIMESTAMP := $(shell date +%s)
+endif
 
 # Build version
 #
